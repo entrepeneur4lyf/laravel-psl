@@ -2,6 +2,8 @@
 /coverage/
 /build/
 /composer.lock
+/.composer-cache/
+/.phpunit.cache/
 
 /.phpunit.result.cache
 /.phpactor.json

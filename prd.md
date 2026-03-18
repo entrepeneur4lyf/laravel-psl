@@ -128,7 +128,7 @@ Ship as a standard Laravel package with:
 * package discovery,
 * one service provider,
 * publishable config,
-* feature flags for macros and typed coercion,
+* config for shipped runtime behavior,
 * Testbench-based integration coverage.
 
 ### 2) Explicit Bridge Utilities
@@ -140,6 +140,8 @@ Add helpers or small classes for:
 * `array -> Collection`
 * keyed arrays <-> PSL-style dict semantics
 * explicit conversions where return-type changes are irreversible
+
+`toDict()` supports mixed `array-key` inputs as they exist at runtime. The package preserves keys exactly as PHP and Laravel represent them and does not add extra normalization or rejection rules for valid runtime keys.
 
 Example:
 
@@ -170,6 +172,8 @@ V1 macro semantics must be explicit:
 * fluent transform macros return Laravel Collections,
 * extraction macros return plain arrays,
 * list-style macros use PSL vec semantics and therefore operate on collection values in a clearly documented way,
+* `preduce` is a terminal operation that returns the final accumulator value and always requires an explicit initial value,
+* `psort` is list-based and returns a reindexed Laravel Collection sorted by values,
 * dict-aware transforms stay in explicit bridge helpers until a later release,
 * key-preserving behavior must not be ambiguous.
 
@@ -194,7 +198,7 @@ Introduce Laravel-friendly typed coercion utilities for:
 * job payload validation,
 * DTO hydration pre-checks.
 
-The package should wrap `Psl\Type` ergonomically without hiding it or replacing it. In core, coercion remains helper-driven. Form Request integration is a later adapter layer rather than part of the initial coercion contract.
+The package should wrap `Psl\Type` ergonomically without hiding it or replacing it. In core, coercion remains helper-driven through a thin value-focused API. Form Request integration is a later adapter layer rather than part of the initial coercion contract.
 
 Example:
 
@@ -202,11 +206,11 @@ Example:
 use Psl\Type;
 use Vendor\LaravelPsl\Type\Coerce;
 
-$user = Coerce::shape([
+$user = Coerce::value(Type\shape([
     'name' => Type\non_empty_string(),
     'email' => Type\non_empty_string(),
     'roles' => Type\vec(Type\string()),
-])->from($request->all());
+]), $request->all());
 ```
 
 ### 5) Exception Experience
@@ -273,23 +277,21 @@ The package provides a publishable config file, for example:
 return [
     'features' => [
         'collection_macros' => true,
-        'typed_coercion' => true,
-        'concurrency' => false,
-    ],
-
-    'concurrency' => [
-        'enabled' => false,
-        'driver' => null,
-        'fail_when_unsupported' => true,
     ],
 ];
 ```
 
-`driver => null` means “use Laravel’s configured default” if concurrency integration is enabled in a future release.
+Concurrency configuration is intentionally omitted from the public V1 config surface and can be introduced later when the feature exists.
 
 ## FR3: Bridge Utilities
 
-The package exposes explicit bridge utilities for vec, dict, and Collection conversions, with documented return types and no hidden key semantics.
+The package exposes explicit bridge utilities for vec, dict, and Collection conversions, with documented return types and no implicit or undocumented key rewriting.
+
+Requirements:
+
+* `toVec()` reindexes values intentionally,
+* `toDict()` preserves runtime keys intentionally,
+* mixed `array-key` inputs are supported as-is rather than normalized or rejected by package-specific rules.
 
 ## FR4: Collection Macros
 
@@ -300,6 +302,8 @@ Macro requirements:
 * macro names remain explicit and do not shadow native Collection methods,
 * list-style operations document when keys are reindexed,
 * macros that preserve fluent chaining return Collections,
+* `preduce` requires an explicit initial value and returns the final accumulator,
+* `psort` returns a reindexed Collection because it follows vec sorting semantics,
 * V1 excludes dict-aware transform macros,
 * extraction methods such as `ptoVec()` and `ptoDict()` return arrays.
 
@@ -384,7 +388,7 @@ laravel-psl/
 * PSL semantics preserved where practical.
 * Opt-in macros, not surprise global behavior.
 * Explicit bridges for irreversible conversions.
-* No hidden key rewriting.
+* No implicit or undocumented key rewriting.
 * Great error messages.
 * Static-analysis-friendly signatures.
 * Safe degradation when optional concurrency support is unavailable.
@@ -505,6 +509,9 @@ Mitigation:
 * Typed coercion remains helper-driven in core. Form Request integration, if added, comes later as a thin adapter.
 * Concurrency helpers default to Laravel’s configured concurrency driver. Package-level driver configuration is only an explicit override.
 * String adapters are deferred until real-world demand justifies them and are not part of the planned v1.1 scope.
+* Public V1 config includes only shipped features. Concurrency config is introduced later with the actual feature.
+* `Coerce` uses a thin value-oriented API rather than a builder-style DSL in v1.
+* `toDict()` supports mixed runtime `array-key` inputs and preserves keys as PHP represents them.
 
 ## Delivery Plan
 

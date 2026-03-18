@@ -11,11 +11,14 @@ final class PackageBootTest extends TestCase
     public function test_it_merges_default_config(): void
     {
         self::assertTrue(config('psl.features.collection_macros'));
-        self::assertTrue(config('psl.features.typed_coercion'));
-        self::assertFalse(config('psl.features.concurrency'));
+    }
 
-        self::assertFalse(config('psl.concurrency.enabled'));
-        self::assertNull(config('psl.concurrency.driver'));
-        self::assertTrue(config('psl.concurrency.fail_when_unsupported'));
+    public function test_public_v1_config_contains_only_shipped_features(): void
+    {
+        self::assertSame([
+            'features' => [
+                'collection_macros' => true,
+            ],
+        ], config('psl'));
     }
 }

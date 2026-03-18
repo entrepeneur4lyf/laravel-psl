@@ -20,8 +20,10 @@
         "php-standard-library/php-standard-library": "^6.0"
     },
     "require-dev": {
+        "laravel/pint": "^1.27",
         "laravel/framework": "^13.0",
         "orchestra/testbench": "^11.0@dev",
+        "phpstan/phpstan": "^2.1",
         "phpunit/phpunit": "^12.5"
     },
     "autoload": {
@@ -35,6 +37,9 @@
         }
     },
     "scripts": {
+        "analyse": "vendor/bin/phpstan analyse --configuration=phpstan.neon.dist",
+        "format": "vendor/bin/pint src tests config",
+        "format:test": "vendor/bin/pint --test src tests config",
         "test": "vendor/bin/phpunit"
     },
     "extra": {
