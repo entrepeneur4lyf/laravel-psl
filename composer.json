@@ -1,0 +1,51 @@
+{
+    "$schema": "https://getcomposer.org/schema.json",
+    "name": "entrepeneur4lyf/laravel-psl",
+    "description": "Laravel-first package that makes the PHP Standard Library feel natural inside Laravel applications.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "laravel",
+        "psl",
+        "php-standard-library"
+    ],
+    "homepage": "https://github.com/entrepeneur4lyf/laravel-psl",
+    "support": {
+        "issues": "https://github.com/entrepeneur4lyf/laravel-psl/issues",
+        "source": "https://github.com/entrepeneur4lyf/laravel-psl"
+    },
+    "require": {
+        "php": "^8.4",
+        "illuminate/support": "^13.0",
+        "php-standard-library/php-standard-library": "^6.0"
+    },
+    "require-dev": {
+        "laravel/framework": "^13.0",
+        "orchestra/testbench": "^11.0@dev",
+        "phpunit/phpunit": "^12.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "LaravelPsl\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "LaravelPsl\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "LaravelPsl\\LaravelPslServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "prefer-stable": true
+}

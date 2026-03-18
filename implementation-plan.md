@@ -13,16 +13,16 @@ This file is the execution checklist for the first release of `laravel-psl`.
 
 ## Phase 1: Foundation
 
-- [ ] Create `composer.json` for the package with PHP `^8.4` and Laravel 13 support.
-- [ ] Define package namespace and PSR-4 autoloading.
-- [ ] Add package discovery metadata for the service provider.
-- [ ] Create `src/LaravelPslServiceProvider.php`.
-- [ ] Create `config/psl.php`.
-- [ ] Register config publishing in the service provider.
-- [ ] Merge package config in the service provider.
-- [ ] Add feature flags for `collection_macros`, `typed_coercion`, and `concurrency`.
-- [ ] Add base test infrastructure with Orchestral Testbench.
-- [ ] Add PHPUnit or Pest configuration for package tests.
+- [x] Create `composer.json` for the package with PHP `^8.4` and Laravel 13 support.
+- [x] Define package namespace and PSR-4 autoloading.
+- [x] Add package discovery metadata for the service provider.
+- [x] Create `src/LaravelPslServiceProvider.php`.
+- [x] Create `config/psl.php`.
+- [x] Register config publishing in the service provider.
+- [x] Merge package config in the service provider.
+- [x] Add feature flags for `collection_macros`, `typed_coercion`, and `concurrency`.
+- [x] Add base test infrastructure with Orchestral Testbench.
+- [x] Add PHPUnit or Pest configuration for package tests.
 
 ## Phase 2: Core Bridge Utilities
 
