@@ -1,2 +1,12 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+/.github export-ignore
+/.composer-cache export-ignore
+/.phpunit.cache export-ignore
+/reference export-ignore
+/tests export-ignore
+/implementation-plan.md export-ignore
+/prd.md export-ignore
+/phpstan.neon.dist export-ignore
+/phpunit.xml.dist export-ignore

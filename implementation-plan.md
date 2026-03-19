@@ -116,7 +116,7 @@ This file is the execution checklist for the first release of `laravel-psl`.
 - [x] Confirm PSL `6.x` is required.
 - [x] Confirm all v1 acceptance criteria from `prd.md` are met.
 - [x] Confirm docs match actual implemented API.
-- [ ] Prepare initial version tag and release notes.
+- [x] Prepare initial version tag and release notes.
 
 ## Later, Not V1
 
