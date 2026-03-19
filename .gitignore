@@ -4,6 +4,8 @@
 /composer.lock
 /.composer-cache/
 /.phpunit.cache/
+/tests/Fixtures/discovery-app/vendor/
+/tests/Fixtures/discovery-app/composer.lock
 
 /.phpunit.result.cache
 /.phpactor.json

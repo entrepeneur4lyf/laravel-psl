@@ -9,7 +9,7 @@ This file is the execution checklist for the first release of `laravel-psl`.
 
 ## V1 Goal
 
-- [ ] Ship a Laravel 13 package on PHP 8.4+ that provides explicit PSL bridge utilities, opt-in list-safe Collection macros, typed coercion helpers built on `Psl\Type`, Laravel-friendly exception handling, and test coverage.
+- [x] Ship a Laravel 13 package on PHP 8.4+ that provides explicit PSL bridge utilities, opt-in list-safe Collection macros, typed coercion helpers built on `Psl\Type`, Laravel-friendly exception handling, and test coverage.
 
 ## Phase 1: Foundation
 
@@ -100,7 +100,7 @@ This file is the execution checklist for the first release of `laravel-psl`.
 ## Phase 7: Quality Gate
 
 - [x] Add a Laravel 13 test matrix.
-- [ ] Verify package auto-discovery works in Testbench.
+- [x] Verify package auto-discovery works in a Laravel fixture app.
 - [x] Verify config publishing works.
 - [x] Verify macros are opt-in and do not register unexpectedly.
 - [x] Verify the public V1 config contains only shipped features.
@@ -109,14 +109,12 @@ This file is the execution checklist for the first release of `laravel-psl`.
 - [x] Run code style checks successfully.
 - [x] Review public API naming for consistency before first tag.
 
-Note: the current Testbench harness still registers the provider manually. Composer discovery metadata is covered, but runtime auto-discovery inside Testbench remains an open verification item.
-
 ## Release Checklist
 
 - [x] Confirm the package requires PHP `^8.4`.
 - [x] Confirm the package targets Laravel `^13.0`.
 - [x] Confirm PSL `6.x` is required.
-- [ ] Confirm all v1 acceptance criteria from `prd.md` are met.
+- [x] Confirm all v1 acceptance criteria from `prd.md` are met.
 - [x] Confirm docs match actual implemented API.
 - [ ] Prepare initial version tag and release notes.
 

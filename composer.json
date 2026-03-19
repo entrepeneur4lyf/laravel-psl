@@ -40,7 +40,9 @@
         "analyse": "vendor/bin/phpstan analyse --configuration=phpstan.neon.dist",
         "format": "vendor/bin/pint src tests config",
         "format:test": "vendor/bin/pint --test src tests config",
-        "test": "vendor/bin/phpunit"
+        "test": "vendor/bin/phpunit",
+        "test:discovery": "@php tests/Fixtures/discovery-app/check-package-discovery.php",
+        "test:discovery:install": "composer update --working-dir=tests/Fixtures/discovery-app --no-interaction --ansi"
     },
     "extra": {
         "laravel": {

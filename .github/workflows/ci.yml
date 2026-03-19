@@ -33,3 +33,5 @@ jobs:
       - run: composer analyse
       - run: composer format:test
       - run: composer test
+      - run: composer test:discovery:install
+      - run: composer test:discovery

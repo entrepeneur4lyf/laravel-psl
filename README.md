@@ -214,4 +214,11 @@ composer install
 vendor/bin/phpunit
 ```
 
+Auto-discovery smoke test:
+
+```bash
+composer test:discovery:install
+composer test:discovery
+```
+
 See [prd.md](./prd.md) for the product definition and [implementation-plan.md](./implementation-plan.md) for the execution checklist.
