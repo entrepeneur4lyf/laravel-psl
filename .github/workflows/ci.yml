@@ -24,7 +24,7 @@ jobs:
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: intl, sodium
+          extensions: intl, sodium, fileinfo
           coverage: none
 
       - uses: ramsey/composer-install@v3
